@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // Declaración de la clase
+        class Person {
+
+            constructor(nameValue, lastNameValue, hobbiesValue, favDrinkValue) {
+                this.firstName = nameValue
+                this.lastName = lastNameValue
+                this.hobbies = hobbiesValue
+                this.favDrink = favDrinkValue
+                this.alive = true
+            }
+
+            learnNewHobby(newHobby) {
+                this.hobbies.push(newHobby)
+            }
+
+            updateFavDrink(newFavDrink) {
+                this.favDrink = newFavDrink
+            }
+
+        }
+
+        // Instancias
+        const person1 = new Person('Ger', 'Alv', ['sky', 'beer'], 'Cacaolat')
+        const person2 = new Person('Sara', 'Whatever', ['gadgets', 'poker'], 'Kas')
+
+
+        // Ejemplos de uso
+        console.log('Esto es una instancia', person1)
+        console.log('la persona se llama', person1.firstName)
+        console.log('a la persona le gustan', person1.hobbies)
+        console.log('...¿está vivo?', person1.alive)
+
+        person1.learnNewHobby('chess')
+
+        console.log('a la persona le gustan', person1.hobbies)
+
+        person2.updateFavDrink('Coca-cola')
+
+
+
+    </script>
+</body>
+
+</html>

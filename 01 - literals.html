@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        const person = {
+            firstName: 'Ger',
+            lastName: 'Alv',
+            celiac: false,
+            height: 1.71,
+            weight: 89,
+            favDrink: 'Cacaolat',
+            birth: new Date('1986/23/05'),
+            occupation: {
+                title: 'Teacher',
+                company: 'Ironhack',
+                salary: 20000
+            },
+            subscriptions: [
+                {
+                    service: 'Netflix',
+                    cost: 12.99,
+                    active: true
+                },
+                {
+                    service: 'Prime',
+                    cost: 10.99,
+                    active: true
+                },
+                {
+                    service: 'HBO',
+                    cost: 9.99,
+                    active: false
+                }
+            ],
+            hobbies: ['sky', 'beer', 'gadgets'],
+            updateFavDrink(newFavDrink) {
+                this.favDrink = newFavDrink
+            },
+            learnNewHobby(hobbyToLearn) {
+                this.hobbies.push(hobbyToLearn)
+            },
+            getTotalSubcriptions() {
+
+                let totalCost = 0
+
+                this.subscriptions.forEach((eachSubscription) => {
+                    if (eachSubscription.active) {
+                        totalCost += eachSubscription.cost
+                    }
+                })
+
+                return totalCost
+            },
+            buyService(serviceName, serviceCost) {
+
+                const newService = {
+                    service: serviceName,
+                    cost: serviceCost,
+                    active: true
+                }
+
+                this.subscriptions.push(newService)
+            }
+        }
+
+
+
+        console.log(person)
+
+
+
+        console.log('Su bebida fav es', person.favDrink)
+        person.updateFavDrink('Jaggermonster')
+        console.log('Su bebida fav es', person.favDrink)
+
+
+
+
+        console.log('Sus hobbies son', person.hobbies)
+        person.learnNewHobby('chess')
+        console.log('Sus hobbies son', person.hobbies)
+
+
+
+
+        let total = person.getTotalSubcriptions()
+        console.log('Resulta que me estoy dejando', total, '€ en suscripciones OMG D:')
+
+        person.buyService('Disney+', 9.99)
+
+        total = person.getTotalSubcriptions()
+        console.log('Resulta que me estoy dejando', total, '€ en suscripciones OMG D:')
+
+
+    </script>
+</body>
+
+</html>

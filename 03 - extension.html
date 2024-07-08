@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        class User {
+
+            constructor(nameValue, lastNameValue, emailValue) {
+                this.firstName = nameValue
+                this.lastName = lastNameValue
+                this.email = emailValue
+                this.cash = 0
+                this.active = true
+            }
+
+            addCash(quantity) {
+                this.cash += quantity
+            }
+
+            spendCash(quantity) {
+                this.cash -= quantity
+            }
+
+            updateEmail(newEmail) {
+                this.email = newEmail
+            }
+        }
+
+        const user1 = new User('German', 'Alvarez', 'ger@msn.es')
+
+        console.log('El usuario', user1.firstName, 'tiene', user1.cash, '€ en su monedero')
+        user1.addCash(1000)
+        console.log('El usuario', user1.firstName, 'tiene', user1.cash, '€ en su monedero')
+
+
+
+
+        class Player extends User {
+
+            constructor(nameValue, lastNameValue, emailValue, nickValue) {
+                super(nameValue, lastNameValue, emailValue)
+                this.nick = nickValue
+                this.lives = 10
+            }
+
+            looseLives(livesLost) {
+                this.lives -= livesLost
+            }
+
+            buyLives(quantity) {
+
+                const livePrice = 500
+                const totalCost = livePrice * quantity
+
+                if (this.cash >= totalCost) {
+                    this.lives += quantity
+                    this.cash -= totalCost
+                } else {
+                    throw new Error(`Solo tienes ${this.cash} y necesitas ${totalCost}`)
+                }
+            }
+        }
+
+        const player1 = new Player('Sara', 'Gómez', 'sara@msn.es', 'RubiSeLa_81')
+
+        console.log('La jugadora', player1.nick, 'en realidad se llama', player1.firstName, 'y tiene', player1.lives, 'vidas')
+
+        // player1.buyLives(25)         -> error!
+
+        player1.addCash(10000)
+
+        player1.buyLives(3)
+
+        console.log('Ahora tiene', player1.lives, 'vidas y', player1.cash, '€')
+
+
+
+
+
+
+        class Witch extends Player {
+
+            constructor(nameValue, lastNameValue, emailValue, nickValue, spellValue) {
+                super(nameValue, lastNameValue, emailValue, nickValue)
+                this.spell = spellValue
+            }
+
+            makeSpell() {
+                console.warn('¡La bruja', this.nick, 'te atacó con', this.spell)
+            }
+        }
+
+
+        const witch1 = new Witch('Charo', 'García', 'sara@msn.es', 'tu brujikah morEniKah_ò_Ó', 'ABRA CADABRA')
+
+        console.log('La jugadora con nick "', witch1.nick, '" en realidad se llama', witch1.firstName)
+
+        witch1.makeSpell()
+
+
+
+
+        class Gnome extends Player {
+
+            constructor(nameValue, lastNameValue, emailValue, nickValue, attackValue) {
+                super(nameValue, lastNameValue, emailValue, nickValue)
+                this.speciaAttack = attackValue
+            }
+
+            attack() {
+                console.log('el gnomo', this.nick, 'te atacó con', this.speciaAttack, '... ¡qué guarro!')
+            }
+        }
+
+
+        const gnome1 = new Gnome('Fer', 'Díaz', 'fer@msn.es', 'davidote', 'escupitajos y miradas juiciosas')
+
+        gnome1.attack()
+
+        gnome1.addCash(1000)
+
+        console.log(gnome1)
+
+
+    </script>
+</body>
+
+</html>
